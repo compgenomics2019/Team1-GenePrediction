@@ -47,5 +47,5 @@ For validationP.py or validationX.py: \
 `-o` :the output folder for your outputs. 
 ### Description of output
 There will be two folders in your output folder:\
-`knownprotein` : The fasta files in this folder have got rid of the sequences that do not have hit in blast.\
-`novelgene` : The fasta files in this folder do not have hit in blast.
+`knownprotein/` : The fasta files in this folder have got rid of the sequences that do not have hit in blast.\
+`novelgene/` : The fasta files in this folder do not have hit in blast.
