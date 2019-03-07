@@ -2,8 +2,9 @@ Computational Genomics Gene prediction pipeline
 ===============================================
 This pipeline is designed by team2-group1, to predict genes of the samples from team1 using a number of Gene prediction tools. This pipeline is used to generate a merged result from several tools.
 
-Requirements
+Gene Prediction Pipeline
 ---------------------
+### Requirements
 [python3](https://www.python.org/) \
 Latest [Perl](http://www.perl.org/get.html) \
 [bedtools](https://bedtools.readthedocs.io/en/latest/content/installation.html) \
@@ -17,8 +18,6 @@ Latest [Biopython](https://biopython.org/wiki/Download) (If running Bedtools)
 bedtools and samtools are required for the union of GeneMarkS-2 and Prodigal results \
 All required tools need to be installed properly and added to $PATH
 
-Gene Prediction Pipeline
-----------------
 ### Quick Start
 `-f` :Path to file input directory (Required) \
 `-p` :Run Prodigal prokaryotic mRNA gene prediction tool \
@@ -31,7 +30,6 @@ Bedtools will work for default parameters or if `-p` and `-g` are specified, and
 Example usage: `./geneprediction_pipeline_t1.py -f <input_dir>` 
 
 ### Output Description
-
 Prodigal and GeneMarkS-2 run individually will be found in their respective folders, `./prodigalresults` or `./gms2results`\
 Output files are split into three folders. One for GFF format, fna and faa. \
 If Prodigal and GeneMarkS-2 are run in tandem, then the combined output will also be in `./prodigal-genemark` 
