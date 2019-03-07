@@ -23,7 +23,7 @@ All required tools need to be installed properly and added to $PATH
 `-p` :Run Prodigal prokaryotic mRNA gene prediction tool \
 `-g` :Run GeneMarkS-2 prokaryotic mRNA gene prediction tool \
 `-nc` :Run Aragorn and Barrnap to predict tRNA/tmRNA and rRNA (respectively) (optional) \
-`-s` :Separate Aragorn and Barrnap results into two distinct sets of nucleotide fasta files 
+`-ncs` :Separate Aragorn and Barrnap results into two distinct sets of nucleotide fasta files 
 
 Default behavior will still require `-f` and will run both Prodigal and GeneMarkS-2 with Bedtools \
 bedtools will run if both Prodigal and GeneMarkS-2 are run, and includes a union folder of both tools \
