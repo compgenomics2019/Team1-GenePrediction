@@ -26,7 +26,7 @@ All required tools need to be installed properly and added to $PATH
 `-s` :Separate Aragorn and Barrnap results into two distinct sets of nucleotide fasta files 
 
 Default behavior will still require `-f` and will run both Prodigal and GeneMarkS-2 with Bedtools \
-Bedtools will work for default parameters or if `-p` and `-g` are specified, and includes a union folder of both tools \
+bedtools will run if both Prodigal and GeneMarkS-2 are run, and includes a union folder of both tools \
 Example usage: `./geneprediction_pipeline_t1.py -f <input_dir>` 
 
 ### Output Description
