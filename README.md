@@ -21,14 +21,14 @@ Latest [Perl](http://www.perl.org/get.html) (required)\
 [blast+](ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/) (required)
 
 ### Quick start
-For downloading database:
+For downloading database:\
 Use ```./update_blastdb.pl --blastdb_version 5 --showall``` to see the option. \
 Use ```./update_blastdb.pl --blastdb_version 5 nr_v5 --decompress ``` to download. \
 \
-For getting the taxonomy_idlist:
+For getting the taxonomy_idlist:\
 Use ```get_species_taxids.sh -n [organism]```\
 \
-For blastp (amino acid):    
+For blastp (amino acid):   
 ```./blastp.py -d queried_fold -t taxonomy_idlist -o outputfolder``` \
 or blastx (DNA seqs):\
 ```./blastx.py -d queried_fold -t taxonomy_idlist -o outputfolder``` 
