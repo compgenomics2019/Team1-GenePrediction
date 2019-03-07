@@ -8,24 +8,41 @@ Requirements
 Latest [Perl](http://www.perl.org/get.html) \
 [bedtools](https://bedtools.readthedocs.io/en/latest/content/installation.html) \
 [samtools](http://www.htslib.org/download/) \
+Latest [Prodigal](http://compbio.ornl.gov/prodigal/) \
+Latest [GeneMarkS-2](http://topaz.gatech.edu/GeneMark/license_download.cgi) \
+Latest [Aragorn](http://mbio-serv2.mbioekol.lu.se/ARAGORN/Downloads/) \
+Latest [Barrnap](http://www.vicbioinformatics.com/software.barrnap.shtml) \
+Latest [Biopython](https://biopython.org/wiki/Download) (If running Bedtools)
 
 bedtools and samtools are required for the union of GeneMarkS-2 and Prodigal results \
 All required tools need to be installed properly and added to $PATH
 
-Getting started
+Gene Prediction Pipeline
 ----------------
+### Quick Start
 `-f` :Path to file input directory (Required) \
 `-p` :Run Prodigal prokaryotic mRNA gene prediction tool \
 `-g` :Run GeneMarkS-2 prokaryotic mRNA gene prediction tool \
-`-nc` :Run Aragorn and Barrnap to predict tRNA/tmRNA and rRNA (respectively)
+`-nc` :Run Aragorn and Barrnap to predict tRNA/tmRNA and rRNA (respectively) (optional) \
+`-s` :Separate Aragorn and Barrnap results into two distinct sets of nucleotide fasta files 
 
 Default behavior will still require `-f` and will run both Prodigal and GeneMarkS-2 with Bedtools \
+Bedtools will work for default parameters or if `-p` and `-g` are specified, and includes a union folder of both tools \
 Example usage: `./geneprediction_pipeline_t1.py -f <input_dir>` 
 
+### Output Description
+
+Prodigal and GeneMarkS-2 run individually will be found in their respective folders, `./prodigalresults` or `./gms2results`\
+Output files are split into three folders. One for GFF format, fna and faa. \
+If Prodigal and GeneMarkS-2 are run in tandem, then the combined output will also be in `./prodigal-genemark` 
+
+Aragorn and Barrnap results are joined by default into single `.fna` files by assembly, located in `./arabarr` 
+
+Nucleotide and Amino acid fasta formats may be used with BLAST homology validation as described below.
 
 Blast ( For validation )
 ---------------------
-### Requirement
+### Requirements
 Version_5 database (required) \
 taxonomic_id list (required) \
 [EDirect](https://www.ncbi.nlm.nih.gov/books/NBK179288/) command-line utility (required) \
@@ -58,7 +75,7 @@ For validationP.py or validationX.py: \
 `-s` :the folder that contains only fasta files you want to validate. \
 `-b` :the folder that contains only blast results for your fasta files. \
 `-o` :the output folder for your outputs. 
-### Description of output
+### Output Description
 There will be two folders in your output folder:\
 `knownprotein/` : The fasta files in this folder have got rid of the sequences that do not have hit in blast.\
 `novelgene/` : The fasta files in this folder do not have hit in blast.
