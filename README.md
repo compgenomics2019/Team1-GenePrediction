@@ -18,7 +18,7 @@ taxonomic_id list (required) \
 [EDirect](https://www.ncbi.nlm.nih.gov/books/NBK179288/) command-line utility (required) \
 Latest [Perl](http://www.perl.org/get.html) (required)\
 [python3](https://www.python.org/) (required)
-[blast+](ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/) (required)
+[blast+] (https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&PAGE_TYPE=BlastDocs&DOC_TYPE=Download) (required)
 
 ### Quick start
 For downloading database:\
