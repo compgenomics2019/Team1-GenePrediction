@@ -23,15 +23,15 @@ Latest [Perl](http://www.perl.org/get.html) (required)\
 ### Quick start
 For downloading database:\
 Use ```./update_blastdb.pl --blastdb_version 5 --showall``` to see the option. \
-Use ```./update_blastdb.pl --blastdb_version 5 nr_v5 --decompress ``` to download. \
+Use ```./update_blastdb.pl --blastdb_version 5 [Database] --decompress ``` to download. \
 \
 For getting the taxonomy_idlist:\
 Use ```get_species_taxids.sh -n [organism]```\
 \
 For blastp (amino acid):   
-```./blastp.py -d queried_fold -t taxonomy_idlist -o outputfolder``` \
+```./blastp.py -d [queried_fold] -t [taxonomy_idlist] -o [outputfolder]``` \
 or blastx (DNA seqs):\
-```./blastx.py -d queried_fold -t taxonomy_idlist -o outputfolder``` 
+```./blastx.py -d [queried_fold] -t [taxonomy_idlist] -o [outputfolder]``` 
 ### Description of argument
 For blastp.py or blastx.py: \
 `-d` :the folder that contains only fasta files you want to validate. \
