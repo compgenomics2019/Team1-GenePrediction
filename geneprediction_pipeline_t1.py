@@ -8,19 +8,19 @@ import argparse
 
 def genemark(file_dir):
 	
-	if os.path.exists("./test_gms2results") != True:
-		subprocess.call(["mkdir", "test_gms2results"])
-	if os.path.exists("./test_gms2results/gfffiles") != True:
-		subprocess.call(["mkdir","test_gms2results/gfffiles"])
-	if os.path.exists("./test_gms2results/nucleotidefasta") != True:
-		subprocess.call(["mkdir","test_gms2results/nucleotidefasta"])
-	if os.path.exists("./test_gms2results/proteinfasta") != True:
-		subprocess.call(["mkdir","test_gms2results/proteinfasta"])
+	if os.path.exists("./gms2results") != True:
+		subprocess.call(["mkdir", "gms2results"])
+	if os.path.exists("./gms2results/gfffiles") != True:
+		subprocess.call(["mkdir","gms2results/gfffiles"])
+	if os.path.exists("./gms2results/nucleotidefasta") != True:
+		subprocess.call(["mkdir","gms2results/nucleotidefasta"])
+	if os.path.exists("./gms2results/proteinfasta") != True:
+		subprocess.call(["mkdir","gms2results/proteinfasta"])
 	
 	for i in os.listdir(file_dir):
-		gff = os.path.join("test_gms2results/gfffiles","{}.gff".format(i.split(".")[0]))
-		nucleotides = os.path.join("test_gms2results/nucleotidefasta","{}.fna".format(i.split(".")[0]))
-		proteins = os.path.join("test_gms2results/proteinfasta","{}.faa".format(i.split(".")[0]))
+		gff = os.path.join("gms2results/gfffiles","{}.gff".format(i.split(".")[0]))
+		nucleotides = os.path.join("gms2results/nucleotidefasta","{}.fna".format(i.split(".")[0]))
+		proteins = os.path.join("gms2results/proteinfasta","{}.faa".format(i.split(".")[0]))
 		dir = os.path.join(file_dir, i)
 		subprocess.call(["./gms2_linux_64/gms2.pl", "--seq", dir, "--genome-type", "bacteria", "--output",gff,"--format","gff","--fnn",nucleotides,"--faa",proteins])
 	
@@ -56,7 +56,7 @@ def bedtools_func(file_dir, home):
 	for i in os.listdir(file_dir):
 		prodigal_gff = os.path.join('prodigalresults','gff','{}.gff'.format(i.split(".")[0]))
 		#gets gff files from prodigal
-		genemark_gff = os.path.join('test_gms2results','gfffiles','{}.gff'.format(i.split(".")[0]))
+		genemark_gff = os.path.join('gms2results','gfffiles','{}.gff'.format(i.split(".")[0]))
 		#gets gff files from genemark
 		intersect1 = os.path.join('prodigal-genemark/gfffiles','{}intersect1.gff'.format(i.split(".")[0]))
 
@@ -90,47 +90,48 @@ def bedtools_func(file_dir, home):
 		fastasequences = ['bedtools','getfasta','-fo',nucleotides,'-fi',dir,'-bed',union]
 		amino = os.path.join(home,"prodigal-genemark/aminoacids","{}.faa".format(i.split(".")[0]))
 		subprocess.call(fastasequences)
-		subprocess.call(['python3',dnatoaapy,nucleotides,amino])
+		
+		#subprocess.call(['python3',dnatoaapy,nucleotides,amino])
 		subprocess.call(['rm','-f','{}.fai'.format(dir)])
 
 def barrnap(a):
-    if os.path.exists("./barrnap_results") != True:
+	if os.path.exists("./barrnap_results") != True:
 		subprocess.call(['mkdir','barrnap_results'])
-    if os.path.exists("./barrnap_results/gfffiles") != True:
+	if os.path.exists("./barrnap_results/gfffiles") != True:
 		subprocess.call(['mkdir','barrnap_results/gfffiles'])
 	if os.path.exists("./barrnap_results/nucleotides") != True:
 		subprocess.call(['mkdir','barrnap_results/nucleotides'])
 
 
-    for i in os.listdir(a):
-        gff = os.path.join("barrnap_results/gfffiles","barnap_{}.gff".format(i.split(".")[0]))
-        nucleotides = os.path.join("barrnap_results/nucleotides","barrnap_{}.fna".format(i.split(".")[0]))
-        dir = os.path.join(a,i)
-        subprocess.call(['barrnap --outseq {} < {} > {}'.format(nucleotides,dir,gff)],shell=True)
+	for i in os.listdir(a):
+		gff = os.path.join("barrnap_results/gfffiles","barnap_{}.gff".format(i.split(".")[0]))
+		nucleotides = os.path.join("barrnap_results/nucleotides","barrnap_{}.fna".format(i.split(".")[0]))
+		dir = os.path.join(a,i)
+		subprocess.call(['barrnap --outseq {} < {} > {}'.format(nucleotides,dir,gff)],shell=True)
 
 def aragorn(a):
 	if os.path.exists("./aragorn_results") != True:
 		subprocess.call(['mkdir','aragorn_results'])
-    if os.path.exists("./aragorn_results/gfffiles") != True:
+	if os.path.exists("./aragorn_results/gfffiles") != True:
 		subprocess.call(['mkdir','aragorn_results/gfffiles'])
-    if os.path.exists("./aragorn_results/nucleotides") != True:
+	if os.path.exists("./aragorn_results/nucleotides") != True:
 		subprocess.call(['mkdir','aragorn_results/nucleotides'])
 
-    for i in os.listdir(a):
-        gff = os.path.join("aragorn_results/gfffiles","aragorn_{}.gff".format(i.split(".")[0]))
-        nucleotides = os.path.join("aragorn_results/nucleotides","aragorn_{}.fna".format(i.split(".")[0]))
-        tRNAtxt = os.path.join("aragorn_results","{}.txt".format(i.split(".")[0]))
-        dir = os.path.join(a,i)
+	for i in os.listdir(a):
+		gff = os.path.join("aragorn_results/gfffiles","aragorn_{}.gff".format(i.split(".")[0]))
+		nucleotides = os.path.join("aragorn_results/nucleotides","aragorn_{}.fna".format(i.split(".")[0]))
+		tRNAtxt = os.path.join("aragorn_results","{}.txt".format(i.split(".")[0]))
+		dir = os.path.join(a,i)
 
-        subprocess.call(["aragorn","-t","-m","-gc1","-w",dir,"-fo","-o",nucleotides])
-        subprocess.call(["aragorn","-t","-m","-gc1","-w",dir,"-o",tRNAtxt])
-        subprocess.call(["/usr/bin/perl","cnv_aragorn2gff.pl","-i",dir,"-o",tRNAgff, "-gff-ver=2"])
+		subprocess.call(["aragorn","-t","-m","-gc1","-w",dir,"-fo","-o",nucleotides])
+		subprocess.call(["aragorn","-t","-m","-gc1","-w",dir,"-o",tRNAtxt])
+		subprocess.call(["/usr/bin/perl","cnv_aragorn2gff.pl","-i",dir,"-o",tRNAgff, "-gff-ver=2"])
 
 def join(a,b):
-    subprocess.call(['mkdir','arabarr'])
+	subprocess.call(['mkdir','arabarr'])
 
-    for i,j in zip(sorted(os.listdir(a)),sorted(os.listdir(b))):
-        subprocess.call('cat aragorn_results/nucleotides/{} barrnap_results/nucleotides/{} > arabarr/arabarr_{}.fna'.format(i,j,i.split("_")[1]),shell=True)
+	for i,j in zip(sorted(os.listdir(a)),sorted(os.listdir(b))):
+		subprocess.call('cat aragorn_results/nucleotides/{} barrnap_results/nucleotides/{} > arabarr/arabarr_{}.fna'.format(i,j,i.split("_")[1]),shell=True)
 	
 def main():
 	# Initialize argument parser for script flags
@@ -141,6 +142,7 @@ def main():
 	parser.add_argument('-p', help='Run Prodigal for ab-initio protein coding gene predictor.', required=False, action='store_true')
 	parser.add_argument('-g', help='Run GeneMarkS-2 for ab-initio protein coding gene predictor.', required=False, action='store_true')
 	parser.add_argument('-nc', help='Runs Aragorn and Barrnap for non-coding RNA prediction.', required=False, action='store_true')
+	parser.add_argument('-ncs', help='Runs Aragorn and Barrnap independently.', required=False, action='store_true')
 	
 	args = parser.parse_args()
 	# Error handling for file input path
@@ -156,19 +158,23 @@ def main():
 	if args.g:
 		genemark(args.f)
 	# Runs bedtools if both genemark and prodigal are selected
-	if args.p and args.g:
+	if (args.p and args.g):
 		bedtools_func(args.f, home)
 	# Default mode to run both prodigal and genemark with bedtools_func
-	if not args.p or args.g:
-		prodial(args.f)
-		genemark(args.f)
-		bedtools_func(args.f, home)
+	if not args.p
+		if not args.g:
+			prodigal(args.f)
+			genemark(args.f)
+			bedtools_func(args.f, home)
 	
 	# Runs aragorn and barrnap if selected
 	if args.nc:
 		aragorn(args.f)
 		barrnap(args.f)
 		join('aragorn_results/nucleotides','barrnap_results/nucleotides')
+	if args.ncs:
+		aragorn(args.f)
+		barrnap(args.f)
 	
 if __name__ == '__main__':
 	main()
