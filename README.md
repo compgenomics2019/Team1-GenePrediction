@@ -4,11 +4,24 @@ This pipeline is designed by team2-group1, to predict genes of the samples from 
 
 Requirements
 ---------------------
-(Things you want to write)
+[python3](https://www.python.org/) \
+Latest [Perl](http://www.perl.org/get.html) \
+[bedtools](https://bedtools.readthedocs.io/en/latest/content/installation.html) \
+[samtools](http://www.htslib.org/download/) \
+
+bedtools and samtools are required for the union of GeneMarkS-2 and Prodigal results \
+All required tools need to be installed properly and added to $PATH
 
 Getting started
 ----------------
-(Things you want to write)
+`-f` :Path to file input directory (Required) \
+`-p` :Run Prodigal prokaryotic mRNA gene prediction tool \
+`-g` :Run GeneMarkS-2 prokaryotic mRNA gene prediction tool \
+`-nc` :Run Aragorn and Barrnap to predict tRNA/tmRNA and rRNA (respectively)
+
+Default behavior will still require `-f` and will run both Prodigal and GeneMarkS-2 with Bedtools \
+Example usage: `./geneprediction_pipeline_t1.py -f <input_dir>` 
+
 
 Blast ( For validation )
 ---------------------
