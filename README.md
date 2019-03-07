@@ -1,1 +1,1 @@
-Say something
+Computational Genomics Genome Assembly Pipeline
