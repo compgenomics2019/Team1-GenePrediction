@@ -20,6 +20,9 @@ Latest [Perl](http://www.perl.org/get.html) (required)\
 [python3](https://www.python.org/) (required)\
 [blast+](https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&PAGE_TYPE=BlastDocs&DOC_TYPE=Download) (required)
 
+The validation part assume that all the requirements are installed and the tools should be added to $PATH.
+
+
 ### Quick start
 For downloading database:\
 Use ```./update_blastdb.pl --blastdb_version 5 --showall``` to see the option. \
