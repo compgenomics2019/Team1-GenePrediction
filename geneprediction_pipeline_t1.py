@@ -161,7 +161,7 @@ def main():
 	if (args.p and args.g):
 		bedtools_func(args.f, home)
 	# Default mode to run both prodigal and genemark with bedtools_func
-	if not args.p
+	if not args.p:
 		if not args.g:
 			prodigal(args.f)
 			genemark(args.f)
